@@ -1,0 +1,101 @@
+<!-- 
+\author Zachary Wartell
+\brief See documentation embedded in HTML code... :)
+
+Copyright 2015, Zachary Wartell, University of North Carolina at Charlotte.  All rights reserved.
+zwartell@uncc.edu
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Aliasing Demo</title>
+
+     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+  $(function() {
+    $( "#slider" ).slider();
+  });
+  </script>
+
+  </head>
+
+  <body onload="main()">
+    <div style="text-align:center">
+	<h1> Demo: Aliasing of Pattern Fill </h1>
+	<h2> v0.1 </h2>
+	<h3> <a href = "http://webpages.uncc.edu/zwartell/">Zachary Wartell</a>. All rights reserved. </h3>
+	
+	<p style="text-align:left"> 
+
+	On a blue canvas, a quadrilateral drawn below with a WebGL <a href="#source_code">fragment shader</a> that calculates the pixel intensity with a
+	sin function whose wavelength (or pixels per cycle) is controlled by
+	the slider.  The quad is 400 pixels wide.
+	
+	<ol style="text-align:left"> 
+	    <li>
+	    <b> No Aliasing: </b> Above the Nyquist limit, when <code> Pixels Per Cycle </code> &ge; 2, the texture renders without aliasing and looks "good".
+	    </li>
+
+	    <li>
+	    	<b> Aliasing: </b>
+
+		Below the Nyquist limit, when <code> Pixels Per Cycle </code> &lt; 2, the
+		sin functions frequency is much too high to be captured by
+		the 400 pixel width of the quadtrilateral.  Instead, the texture
+		appears to have a frequency much lower than the mathmematical
+		frequency (<code> Pixels Per Cycle </code>). 
+		
+		</br> This demonstrates aliasing occurring where we have "a
+		high frequency signal masquarading as lower frequency signal." 
+
+	    </li>
+	</ol>
+	</p>
+
+	<hr>
+
+	<div id="slider"></div>
+
+	<p> Pixels Per Cycle: 
+	    <code id="pixels_per_cycle"> 400 </code>
+	</p>
+	<p> Cycles Per Pixel: 
+	    <code id="cycles_per_pixels"> 400 </code>
+	</p>
+
+	<canvas id="webgl" width="400" height="400">
+	Please use a browser that supports "canvas"
+	</canvas>
+
+	<hr>
+	<h3> Questions </h3> 
+
+	<ol style="text-align:left"> 
+	    <li> Set the Pixels Per Cycle to 0.32.  Look at the image.  What does the Pixels Per Cycle appear to be?
+	    <li> Set the Pixels Per Cycle to a value in range 0.5 to 1.  Look at the image!  What does the Pixels Per Cycle appear to be?
+	</ol>
+
+	<hr>
+	<h3> Fragment Source Code </h3> 
+	<p style="text-align:left">
+	<code id="source_code">
+	uniform mediump float u_pixels_per_cycle;  </br>
+	void main() { </br>
+	gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * sin( (400.0 - gl_FragCoord.x)/u_pixels_per_cycle*2.0*pi); </br>
+	gl_FragColor[3]=1.0; </br>
+	} </br>
+	</code>
+	</p>
+    </div>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="AliasingDemo.js"></script>
+  </body>
+</html>

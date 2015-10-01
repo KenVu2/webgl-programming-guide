@@ -22,10 +22,39 @@ case is using box filter.  Perhaps write separate shader for educational purpose
 var FSHADER_SOURCE =
   '#define pi 3.141592653589793238462643383279 \n' +
   'uniform mediump float u_pixels_per_cycle;\n' +
-  'void main() {\n' +  
-  '    gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * sin( (400.0 - gl_FragCoord.x)/u_pixels_per_cycle*2.0*pi);\n' +
+  'const mediump float CANVAS_WIDTH=400.0;\n' +
+  'void main() {\n' +
+  '    gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (0.5*sin(2.0*pi*(CANVAS_WIDTH - gl_FragCoord.x)/u_pixels_per_cycle)+0.5);\n' +
   '    gl_FragColor[3]=1.0;' +
   '}\n';
+
+/* 
+\author Zachary Wartell
+\brief performs anaytic integratation of the sin function over the expanse of the current fragment (box filter of width 1).
+
+Notes:
+
+From Mathematica:
+
+Integrate[Sin[(400 - x)/A]*0.5 + 0.5, x]
+
+is
+
+0.5 x + 0.5 K Cos[(400. - 1. x)/K]
+
+*/
+var FSHADER_SOURCE_BOX_FILTER =
+  '#define pi 3.141592653589793238462643383279 \n' +
+  'uniform mediump float u_pixels_per_cycle;\n' +
+  'const mediump float CANVAS_WIDTH=400.0;\n' +
+  'void main() {\n' +
+  '    mediump float K=1.0/(2.0*pi/u_pixels_per_cycle);\n' +
+  '    mediump float I_hi,I_low;\n' + 
+  '    I_hi =  0.5*(gl_FragCoord.x+0.5) + 0.5*K * cos ((CANVAS_WIDTH - (gl_FragCoord.x+0.5))/K);\n' +
+  '    I_low = 0.5*(gl_FragCoord.x-0.5) + 0.5*K * cos ((CANVAS_WIDTH - (gl_FragCoord.x-0.5))/K);\n' + 
+  '    gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (I_hi - I_low);\n' + 
+  '    gl_FragColor[3]=1.0;' +
+  '}\n';  
 
 
 // pixels per cycle of sin function 
@@ -142,7 +171,7 @@ function main()
 
 /*
 \author Zachary Wartell
-\brief create quad... 
+\brief main function 
 */
 function initVertexBuffers(gl) {
   var vertices = new Float32Array([

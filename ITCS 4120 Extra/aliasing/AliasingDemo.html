@@ -89,7 +89,8 @@ zwartell@uncc.edu
 	<code id="source_code">
 	uniform mediump float u_pixels_per_cycle;  </br>
 	void main() { </br>
-	gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * sin( (400.0 - gl_FragCoord.x)/u_pixels_per_cycle*2.0*pi); </br>
+	// note, we normalize sin to vary from 0 to 1, and use that as intensity variation </br>
+	gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (0.5*sin( (CANVAS_WIDTH - gl_FragCoord.x)/u_pixels_per_cycle*2.0*pi)+0.5); </br>
 	gl_FragColor[3]=1.0; </br>
 	} </br>
 	</code>

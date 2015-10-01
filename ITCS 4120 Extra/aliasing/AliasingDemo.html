@@ -6,7 +6,9 @@ Copyright 2015, Zachary Wartell, University of North Carolina at Charlotte.  All
 zwartell@uncc.edu
 
 \todo move glsl into separate file
-\todo 
+\todo use CSS instead of line style's 
+
+CITATIONS:
 
 -->
 <!DOCTYPE html>
@@ -49,11 +51,10 @@ zwartell@uncc.edu
 		Below the Nyquist limit, when <code> Pixels Per Cycle </code> &lt; 2, the
 		sin functions frequency is much too high to be captured by
 		the 400 pixel width of the quadtrilateral.  Instead, the texture
-		appears to have a frequency much lower than the mathmematical
+		appears to have a frequency much lower than the mathematical
 		frequency (<code> Cycles Per Pixel </code>). 
 		
-		</br> This demonstrates aliasing occurring where we have "a
-		high frequency signal masquarading as lower frequency signal." 
+		</br> This demonstrates aliasing occurring when "a high frequency signal is masquarading as a low frequency signal." 
 
 	    </li>
 	</ol>
@@ -78,6 +79,8 @@ zwartell@uncc.edu
 
 	<hr>
 	<h3> Exercises and Questions </h3> 
+
+	Examine the WebGL <a href="#source_code">fragment shader</a> below. 
 
 	<ol style="text-align:left"> 
 

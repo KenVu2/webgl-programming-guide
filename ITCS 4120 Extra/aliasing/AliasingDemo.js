@@ -31,6 +31,7 @@ var FSHADER_SOURCE =
 /* 
 \author Zachary Wartell
 \brief performs anaytic integratation of the sin function over the expanse of the current fragment (box filter of width 1).
+\status only partially tested and verified mathmatically
 
 Notes:
 
@@ -41,7 +42,6 @@ Integrate[Sin[(400 - x)/A]*0.5 + 0.5, x]
 is
 
 0.5 x + 0.5 K Cos[(400. - 1. x)/K]
-
 */
 var FSHADER_SOURCE_BOX_FILTER =
   '#define pi 3.141592653589793238462643383279 \n' +

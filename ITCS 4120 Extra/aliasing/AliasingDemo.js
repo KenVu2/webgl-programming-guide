@@ -23,7 +23,7 @@ var FSHADER_SOURCE =
   'uniform mediump float u_pixels_per_cycle;\n' +
   'const mediump float CANVAS_WIDTH=400.0;\n' +
   'void main() {\n' +
-  '    gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (0.5*sin(2.0*pi*(CANVAS_WIDTH - gl_FragCoord.x)/u_pixels_per_cycle)+0.5);\n' +
+  '    gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (0.5*sin(2.0*pi*(gl_FragCoord.x)/u_pixels_per_cycle)+0.5);\n' +
   '    gl_FragColor[3]=1.0;' +
   '}\n';
 

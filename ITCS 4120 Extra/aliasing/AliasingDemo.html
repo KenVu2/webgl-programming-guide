@@ -27,6 +27,14 @@ CITATIONS:
   });
   </script>
 
+  <style>
+	table, th, td {
+    	border: 1px solid black; 
+	margin-left: auto;
+	margin-right: auto;
+	}
+  </style>
+
   </head>
 
   <body onload="main()">
@@ -64,18 +72,22 @@ CITATIONS:
 
 	<div id="slider"></div>
 
-	<p> Pixels Per Cycle: 
-	    <code id="pixels_per_cycle"> 400 </code>
-	</p>
-	<p> Cycles Per Pixel: 
-	    <code id="cycles_per_pixels"> 400 </code>
-	</p>
+	<table style="text-align:center">
+		<tr> 
+			<th> Pixels Per Cycle: </th>
+			<th> <code id="pixels_per_cycle"> 400 </code> </th>
+		</tr>
+		<tr>
+			<th> Cycles Per Pixel: </th> 
+			<th> <code id="cycles_per_pixels"> 400 </code> </th>
+		</tr>
+	</table> 
 
+	<p> The canvas below is 400 pixels wide.  </p>
 	<canvas id="webgl" width="400" height="400">
 	Please use a browser that supports "canvas"
 	</canvas>
 
-	<p> Above canvas is 400 pixels wide.  </p>
 
 	<hr>
 	<h3> Exercises and Questions </h3> 
@@ -91,7 +103,7 @@ yields the image it does.
 	    <li> Move the slider to 'Pixels Per Cycle' = 2.  Here the 400 pixels can just manage to capture the sin function's undulations without aliasing.  </br></br>
 	    <li> Set the Pixels Per Cycle to 0.32.  Look at the image.  What does the <code> Pixels Per Cycle </code> appear to be?
 	    <li> Set the Pixels Per Cycle to a value in range 0.95 to 1.  Look at the image!  What does the <code> Pixels Per Cycle </code> appear to be? </br> 
-	    (Undoubtedly, it appears to a very, very low frequency).
+	    (Undoubtedly, it appears to be a very, very low frequency).
 	</ol>
 
 	<hr>
@@ -101,7 +113,7 @@ yields the image it does.
 	uniform mediump float u_pixels_per_cycle;  </br>
 	void main() { </br>
 	// note, we normalize sin to vary from 0 to 1, and use that as intensity variation </br>
-	gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (0.5*sin( (CANVAS_WIDTH - gl_FragCoord.x)/u_pixels_per_cycle*2.0*pi)+0.5); </br>
+	gl_FragColor = vec4(1.0, 1.0, 1.0,1.0) * (0.5*sin( (gl_FragCoord.x)/u_pixels_per_cycle*2.0*pi)+0.5); </br>
 	gl_FragColor[3]=1.0; </br>
 	} </br>
 	</code>

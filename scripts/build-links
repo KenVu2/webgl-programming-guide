@@ -1,0 +1,11 @@
+#!/bin/bash
+# \author Zachary Wartell
+
+OIFS="$IFS"
+IFS=$'\n'
+FILES=`find . -name "*.html" -not -name "lib/*"`
+echo > links.txt
+for file in $FILES
+do
+    echo \<li\> \<a href=\"$file\"\> $file \</a\> \</li\> >> links.txt
+done

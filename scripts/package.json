@@ -1,0 +1,4 @@
+{
+    "main": "./build-links.js",
+    "type": "module"
+}

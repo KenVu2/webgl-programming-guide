@@ -1,4 +1,4 @@
-// @author Zachary Wartell
+// @author Student Wartell
 
 console.log("Hello World!");
-console.log("My name is Zachary Wartell.  I am a Computer Science professor at UNC Charlotte.");
+console.log("My name is Student Wartell.  I am a Bot Computer Science student UNC Charlotte.");

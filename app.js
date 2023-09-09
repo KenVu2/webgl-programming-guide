@@ -1,6 +1,8 @@
 /*************************❉****✼**********************************************
- * @author Zachary Wartell (skeleton code)
+ * @author $student.contact$ , [skeleton code by Prof. Zachary Wartell, UNC Charotte]
  * 
+ * @git $student.repoURL$
+ * @gitupstream forked from skeleton code at https://cci-git.charlotte.edu/UNCC_Graphics/editing-in-vscode.git
  * 
  *****************************************************************************/
 console.log("Hello World!");

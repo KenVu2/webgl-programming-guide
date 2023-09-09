@@ -1,5 +1,5 @@
 /*************************❉****✼**********************************************
- * @author $student.contact$ , [skeleton code by Prof. Zachary Wartell, UNC Charotte]
+ * @author $student.contact$ , [skeleton code by Prof. Zachary Wartell, UNC Charlotte]
  * 
  * @git $student.repoURL$
  * @gitupstream forked from skeleton code at https://cci-git.charlotte.edu/UNCC_Graphics/editing-in-vscode.git
